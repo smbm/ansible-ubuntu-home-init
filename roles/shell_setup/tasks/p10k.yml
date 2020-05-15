@@ -1,4 +1,9 @@
 ---
+- name: Ensure local fonts directory exists
+  file:
+    path: ~/.local/share/fonts
+    state: directory
+
 - name: check for MesloLGS NF Bold Italic
   stat:
     path: "~/.local/share/fonts/MesloLGS NF Bold Italic.ttf"
