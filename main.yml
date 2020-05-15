@@ -9,5 +9,6 @@
       become: yes
     - role: pip
     - role: shell_setup
+    - role: geerlingguy.dotfiles
 
   tasks: []

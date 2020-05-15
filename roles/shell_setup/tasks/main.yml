@@ -26,3 +26,8 @@
 - import_tasks: ohmyzsh.yml
 
 - import_tasks: p10k.yml
+
+- name: make sure projects dir exists
+  file:
+    path: ~/projects
+    state: directory

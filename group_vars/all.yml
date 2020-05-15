@@ -1,0 +1,11 @@
+---
+dotfiles_repo: "https://github.com/smbm/dotfiles.git"
+dotfiles_repo_version: master
+dotfiles_repo_accept_hostkey: true
+dotfiles_repo_local_destination: "~/projects/dotfiles"
+dotfiles_home: "~"
+dotfiles_files:
+  - .vim
+  - .gitconfig
+  - .p10k.zsh
+  - .zshrc
