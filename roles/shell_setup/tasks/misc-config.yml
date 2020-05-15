@@ -12,3 +12,23 @@
 - name: Install my preferred Gnome terminal settings
   shell: "dconf load /org/gnome/terminal/legacy/profiles:/ < ~/projects/misc-config-files/gnome-terminal-profiles.dconf"
   when: "current_gnome_terminal_profiles.stdout.find( '600223e6-a145-4ce3-8f95-66f72a8f3255' ) == -1"
+
+- name: check to see if vscode config is already linked
+  command: "ls -F ~/.config/Code/User/settings.json"
+  register: existing_vscode_settings_status
+  failed_when: false
+  check_mode: false
+  changed_when: false
+
+- name: remove config file if it is to be replaced
+  file:
+    path: "~/.config/Code/User/settings.json"
+    state: absent
+  when: "'@' not in existing_vscode_settings_status.1.stdout"
+
+- name: link repo version of config file into place
+  file:
+    src: "~/projects/misc-config-files/vscode/settings.json"
+    dest: "~/.config/Code/User/settings.json"
+    state: link
+    
