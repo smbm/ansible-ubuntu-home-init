@@ -1,0 +1,54 @@
+---
+- name: check for MesloLGS NF Bold Italic
+  stat:
+    path: "~/.local/share/fonts/MesloLGS NF Bold Italic.ttf"
+  register: stat_meslo_bi_result
+
+- name: check for MesloLGS NF Bold
+  stat:
+    path: "~/.local/share/fonts/MesloLGS NF Bold.ttf"
+  register: stat_meslo_b_result
+
+- name: check for MesloLGS NF Italic
+  stat:
+    path: "~/.local/share/fonts/MesloLGS NF Italic.ttf"
+  register: stat_meslo_i_result
+
+- name: check for MesloLGS NF Regular
+  stat:
+    path: "~/.local/share/fonts/MesloLGS NF Regular.ttf"
+  register: stat_meslo_r_result
+
+- name: Download MesloLGS NF Bold Italic
+  get_url:
+    url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
+    dest: "~/.local/share/fonts/MesloLGS NF Bold Italic.ttf"
+  when: not stat_meslo_bi_result.stat.exists
+  notify: rebuild font cache
+
+- name: Download MesloLGS NF Bold
+  get_url:
+    url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
+    dest: "~/.local/share/fonts/MesloLGS NF Bold.ttf"
+  when: not stat_meslo_b_result.stat.exists
+  notify: rebuild font cache
+
+- name: Download MesloLGS NF Italic
+  get_url:
+    url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
+    dest: "~/.local/share/fonts/MesloLGS NF Italic.ttf"
+  when: not stat_meslo_i_result.stat.exists
+  notify: rebuild font cache
+
+- name: Download MesloLGS NF Regular
+  get_url:
+    url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
+    dest: "~/.local/share/fonts/MesloLGS NF Regular.ttf"
+  when: not stat_meslo_r_result.stat.exists
+  notify: rebuild font cache
+
+- name: Download p10k
+  git:
+    repo: https://github.com/romkatv/powerlevel10k.git
+    dest: "~/.oh-my-zsh/custom/themes/powerlevel10k"
+    depth: 1

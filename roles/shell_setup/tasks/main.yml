@@ -1,0 +1,28 @@
+---
+- name: comment out hashknownhosts
+  lineinfile:
+    dest: /etc/ssh/ssh_config
+    regexp: '    HashKnownHosts yes'
+    line: '    HashKnownHosts no'
+  become: yes
+
+- name: check for /bin/zsh
+  stat:
+    path: /bin/zsh
+  register: zsh_stat
+
+- name: get current user
+  command: whoami
+  changed_when: false
+  register: current_user
+
+- name: change shell for user
+  user:
+    name: "{{ current_user.stdout }}"
+    shell: /bin/zsh
+  become: yes
+  when: zsh_stat.stat.exists
+
+- import_tasks: ohmyzsh.yml
+
+- import_tasks: p10k.yml

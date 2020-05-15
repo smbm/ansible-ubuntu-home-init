@@ -1,0 +1,10 @@
+---
+- name: Install pip packages
+  pip:
+    name:
+      - ansible
+      - ansible-lint
+      - yamllint
+      - openshift
+      - netaddr
+      - dopy

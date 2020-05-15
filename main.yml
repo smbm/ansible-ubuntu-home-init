@@ -1,0 +1,13 @@
+---
+- hosts: all
+  connection: local
+
+  roles:
+    - role: apt
+      become: yes
+    - role: snaps
+      become: yes
+    - role: pip
+    - role: shell_setup
+
+  tasks: []
