@@ -1,0 +1,14 @@
+---
+- name: Download misc-config repo
+  git:
+    repo: https://github.com/smbm/misc-config-files.git
+    dest: "~/projects/misc-config-files"
+
+- name: check default gnome terminal profile
+  command: "dconf read /org/gnome/terminal/legacy/profiles:/default"
+  register: current_gnome_terminal_profiles
+  changed_when: false
+
+- name: Install my preferred Gnome terminal settings
+  shell: "dconf load /org/gnome/terminal/legacy/profiles:/ < ~/projects/misc-config-files/gnome-terminal-profiles.dconf"
+  when: "current_gnome_terminal_profiles.stdout.find( '600223e6-a145-4ce3-8f95-66f72a8f3255' ) == -1"

@@ -31,3 +31,5 @@
   file:
     path: ~/projects
     state: directory
+
+- import_tasks: misc-config.yml
