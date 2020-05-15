@@ -32,4 +32,10 @@
     path: ~/projects
     state: directory
 
+- name: comment out hashknownhosts
+  lineinfile:
+    dest: ~/.zshrc
+    regexp: 'export ZSH='
+    line: 'export ZSH="/home/{{ current_user.stdout }}/.oh-my-zsh"'
+
 - import_tasks: misc-config.yml
