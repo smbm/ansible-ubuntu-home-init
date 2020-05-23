@@ -57,3 +57,4 @@
     repo: https://github.com/romkatv/powerlevel10k.git
     dest: "~/.oh-my-zsh/custom/themes/powerlevel10k"
     depth: 1
+    version: master

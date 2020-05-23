@@ -5,6 +5,10 @@
   roles:
     - role: apt
       become: yes
+    - role: install-vscode
+      become: yes
+    - role: install-balena-etcher
+      become: yes
     - role: snaps
       become: yes
     - role: pip
@@ -12,3 +16,13 @@
     - role: shell_setup
 
   tasks: []
+
+  vars:
+    vscode_extensions:
+      - ms-python.python
+      - ms-vscode.powershell
+      - vscoss.vscode-ansible
+      - ms-azuretools.vscode-docker
+      - ms-vscode.go
+      - ms-kubernetes-tools.vscode-kubernetes-tools
+      - redhat.vscode-yaml

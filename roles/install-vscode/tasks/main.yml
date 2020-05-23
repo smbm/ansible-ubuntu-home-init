@@ -1,0 +1,33 @@
+---
+- name: Install Microsoft GPG key
+  apt_key:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    state: present
+
+- name: Add VSCode repo
+  apt_repository:
+    repo: deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main
+    filename: vscode
+    state: present
+
+- name: Apt update cache
+  apt:
+    update_cache: yes
+    cache_valid_time: "3600"
+
+- name: Install pre-requisites
+  apt:
+    name: apt-transport-https
+
+- name: Install VSCode from Deb
+  apt:
+    name: code
+
+- name: Install VSCode extensions
+  command: "code --install-extension {{ item }}"
+  become: no
+  register: result
+  when:
+    - vscode_extensions is defined
+  loop: "{{ vscode_extensions }}"
+  changed_when: result.stdout is not search('is already installed.')

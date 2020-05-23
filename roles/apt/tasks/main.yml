@@ -1,16 +1,4 @@
 ---
-- name: Trust bintray.com GPG key for installing Etcher
-  apt_key:
-    keyserver: keyserver.ubuntu.com
-    id: 379CE192D401AB61
-    state: present 
-
-- name: Add Balena Etcher repo
-  apt_repository:
-    repo: deb https://deb.etcher.io stable etcher
-    filename: balena-etcher
-    state: present
-
 - name: Apt update cache
   apt:
     update_cache: yes
@@ -25,6 +13,5 @@
       - zsh
       - gnome-tweaks
       - wireguard
-      - balena-etcher-electron
       - python3-pip
     state: present

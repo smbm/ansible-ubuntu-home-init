@@ -3,6 +3,7 @@
   git:
     repo: https://github.com/smbm/misc-config-files.git
     dest: "~/projects/misc-config-files"
+    version: master
 
 - name: check default gnome terminal profile
   command: "dconf read /org/gnome/terminal/legacy/profiles:/default"

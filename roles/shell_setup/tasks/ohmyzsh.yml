@@ -13,6 +13,7 @@
   git:
     repo: https://github.com/robbyrussell/oh-my-zsh
     dest: ~/.oh-my-zsh
+    version: master
   when: not stat_oh_my_zsh_result.stat.exists
 
 - name: Creating new ~/.zshrc

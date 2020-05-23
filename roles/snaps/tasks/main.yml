@@ -1,11 +1,9 @@
 ---
 - name: Install snaps with option --classic
   snap:
-    name: 
-      - code
+    name:
       - kubectl
       - helm
-      - google-cloud-sdk
     classic: yes
     state: present
 
